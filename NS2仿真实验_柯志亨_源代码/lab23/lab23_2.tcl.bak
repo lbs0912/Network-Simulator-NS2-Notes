@@ -1,0 +1,115 @@
+#讀取使用者設定的參數
+proc getopt {argc argv} {
+	global opt
+        lappend optlist nn
+        for {set i 0} {$i < $argc} {incr i} {
+		set opt($i) [lindex $argv $i]
+	}
+}
+getopt $argc $argv
+
+# 參數設定
+set opt(chan)   Channel/WirelessChannel   
+set opt(prop)	Propagation/TwoRayGround
+set opt(netif)	Phy/WirelessPhy
+
+#底下的設定是比較特別的,若是使用DSR,所使用的ifq就要用CMUPriQueue
+set opt(mac)	Mac/802_11
+if { $opt(0)=="DSR"} {
+  set opt(ifq)          CMUPriQueue 
+} else {
+  set opt(ifq)          Queue/DropTail/PriQueue    ;# interface queue type
+}
+set opt(ll)		LL
+set opt(ant)        Antenna/OmniAntenna
+#設定拓樸
+set opt(x)		500   
+set opt(y)		500   
+set opt(ifqlen)		2000	      
+set opt(seed)	0.0
+#設定trace file
+set opt(tr)		trace1.tr    ;# trace file
+set opt(adhocRouting)   $opt(0)
+#設定節點個數
+set opt(nn)             100      
+#設定traffic pattern檔案     
+set opt(cp)		"cbr_n100_m10_r10" 
+#設定節點移動場景
+set opt(sc)		"scen_100n_0p_10M_100t_500_500" 
+#設定模擬時間
+set opt(stop)		100.0		
+
+Mac/802_11 set CWMin_                 31
+Mac/802_11 set CWMax_                 1023
+Mac/802_11 set SlotTime_              0.000020  ;# 20us
+Mac/802_11 set SIFS_                  0.000010  ;# 10us
+Mac/802_11 set PreambleLength_        144       ;# 144 bit
+Mac/802_11 set PreambleDataRate_      1.0e6     ;# 1Mbps
+Mac/802_11 set PLCPHeaderLength_      48        ;# 48 bits
+Mac/802_11 set PLCPDataRate_          1.0e6     ;# 1Mbps
+Mac/802_11 set RTSThreshold_          3000      ;# bytes Disable RTS/CTS
+Mac/802_11 set ShortRetryLimit_       7         ;# retrans_missions_
+Mac/802_11 set LongRetryLimit_        4         ;# retrans_missions_
+
+Mac/802_11 set dataRate_  2Mb			;# 802.11 data trans_mission rate
+Mac/802_11 set basicRate_ 1Mb                   ;# 802.11 basic trans_mission rate 
+
+
+#產生一個模擬的物件
+set ns_		[new Simulator]
+
+# 設定無線頻道
+set wtopo	[new Topography]
+
+set tracefd	[open $opt(tr) w]
+$ns_ trace-all $tracefd
+#$ns_ use-newtrace 
+
+# 設定拓樸
+$wtopo load_flatgrid $opt(x) $opt(y)
+
+set god_ [create-god $opt(nn)]
+
+set chan_1_ [new $opt(chan)]
+
+$ns_ node-config -adhocRouting $opt(adhocRouting) \
+		 -llType $opt(ll) \
+		 -macType $opt(mac) \
+		 -ifqType $opt(ifq) \
+		 -ifqLen $opt(ifqlen) \
+		 -antType $opt(ant) \
+		 -propType $opt(prop) \
+		 -phyType $opt(netif) \
+		 -channel $chan_1_ \
+		 -topoInstance $wtopo \
+		 -agentTrace ON \
+                 -routerTrace ON \
+                 -macTrace OFF 
+                 
+for {set i 0} {$i < $opt(nn) } {incr i} {
+	set node_($i) [$ns_ node]	
+	$node_($i) random-motion 0	
+}
+
+# 設定節點移動模式
+puts "Loading connection pattern..."
+#使用source去載入traffic pattern檔
+source $opt(cp)
+ 
+# 設定連線傳輸模式
+puts "Loading scenario file..."
+#使用source去載入節點移動場景檔
+source $opt(sc)
+
+for {set i 0} {$i < $opt(nn)} {incr i} {
+   $ns_ initial_node_pos $node_($i) 20
+}
+
+#結束模擬
+for {set i 0} {$i < $opt(nn) } {incr i} {
+    $ns_ at $opt(stop).1 "$node_($i) reset";
+}
+
+$ns_ at  $opt(stop).1 "puts \"ns_ EXITING...\" ; $ns_ halt"
+puts "Starting Simulation..."
+$ns_ run

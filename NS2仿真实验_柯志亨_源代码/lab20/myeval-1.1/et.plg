@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: et - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\smallko\LOCALS~1\Temp\RSP40F.tmp" with contents
+[
+/nologo /Zp4 /MLd /Za /W4 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/et.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myEvalvid_NT\myeval-1.1\stat.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\smallko\LOCALS~1\Temp\RSP40F.tmp" 
+Creating temporary file "C:\DOCUME~1\smallko\LOCALS~1\Temp\RSP410.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /profile /debug /machine:I386 /out:"Debug/et.exe" 
+".\Debug\et.obj"
+".\Debug\misc.obj"
+".\Debug\read.obj"
+".\Debug\stat.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\smallko\LOCALS~1\Temp\RSP410.tmp"
+<h3>Output Window</h3>
+Compiling...
+stat.c
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(15) : warning C4101: 's' : unreferenced local variable
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(13) : warning C4101: 'f' : unreferenced local variable
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(50) : warning C4018: '<' : signed/unsigned mismatch
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(53) : warning C4018: '<' : signed/unsigned mismatch
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(84) : warning C4001: nonstandard extension 'single line comment' was used
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(265) : warning C4127: conditional expression is constant
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(116) : warning C4100: 'id' : unreferenced formal parameter
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(119) : warning C4189: 'decodable_next_i' : local variable is initialized but not referenced
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(567) : warning C4127: conditional expression is constant
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(451) : warning C4100: 'id' : unreferenced formal parameter
+c:\cygwin\home\smallko\ns-allinone-2.28\ns-2.28\myexample\myevalvid_nt\myeval-1.1\stat.c(455) : warning C4189: 'decodable_next_i' : local variable is initialized but not referenced
+Linking...
+
+
+
+<h3>Results</h3>
+et.exe - 0 error(s), 11 warning(s)
+</pre>
+</body>
+</html>

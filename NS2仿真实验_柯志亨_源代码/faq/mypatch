@@ -1,0 +1,19 @@
+--- ori.c	2006-11-29 11:51:46.765625000 +0800
++++ new.c	2006-11-29 11:52:21.656250000 +0800
+@@ -2,10 +2,13 @@
+ 
+ int main()
+ {
+-  int a=5;
+-  int b=10;
++  int a=10;
++  int b=5;
+   int sum;
++  int diff;
+   sum=a+b;
++  diff=a-b;
+   printf("a+b=%d\n", sum);
++  printf("a-b=%d\n", diff);
+   return 0;
+-}	
++}
