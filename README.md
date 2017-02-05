@@ -2,6 +2,7 @@
 
 > Ns is a discrete event simulator targeted at networking research. Ns provides substantial support for simulation of TCP, routing, and multicast protocols over wired and wireless (local and satellite) networks.
 
+* 本文可以在[]()
 * 本文主要对NS2学习和使用过程中遇到的问题进行记录
 * 本文主要参考了柯志亨的《NS2仿真实验》书籍
 * [The Network Simulator - ns-2](http://www.isi.edu/nsnam/ns/)
