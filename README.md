@@ -1,6 +1,5 @@
 # Network Simulator (NS2) Notes
 
-@(Research_Science)[NS2| Network Simulator]
 > Ns is a discrete event simulator targeted at networking research. Ns provides substantial support for simulation of TCP, routing, and multicast protocols over wired and wireless (local and satellite) networks.
 
 * 本文主要对NS2学习和使用过程中遇到的问题进行记录
@@ -9,7 +8,7 @@
 * [柯志亨《NS2仿真实验》](https://book.douban.com/subject/3655281/)
 * 柯志亨《NS2仿真实验》书籍的源代码和NS2模块配置与修改可以参见[Github-lbs0912](https://github.com/lbs0912/Network-Simulator-NS2-Notes)
 
-[TOC]
+
 ## 1. Install NS2
 ### 1.1 Install NS2 on Ubuntu 14.04
 #### 1.1.1  Update System
